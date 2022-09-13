@@ -1,9 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
+import CustomStack from './src/navigation/CustomStack';
 
 const App = () => {
   return (
-    <NavigationContainer>{/* Rest of your app code */}</NavigationContainer>
+    <NavigationContainer>
+      <CustomStack />
+    </NavigationContainer>
   );
 };
 
