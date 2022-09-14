@@ -14,9 +14,15 @@ const CustomStack = () => {
         <Stack.Navigator
             initialRouteName={HOME_SCREEN}
             screenOptions={{
+                headerShadowVisible: true,
+                headerTitleAlign: 'center'
             }}>
-            <Stack.Screen name={HOME_SCREEN} component={HomeScreen} />
-            <Stack.Screen name={DETAILS_SCREEN} component={DetailsScreen} />
+            <Stack.Screen name={HOME_SCREEN} options={{
+                title: 'Home'
+            }} component={HomeScreen} />
+            <Stack.Screen name={DETAILS_SCREEN} options={{
+                title: 'Details'
+            }} component={DetailsScreen} />
 
         </Stack.Navigator>
     );

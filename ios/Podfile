@@ -25,6 +25,7 @@ target 'RebaTest' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'RebaTestTests' do
     inherit! :complete
