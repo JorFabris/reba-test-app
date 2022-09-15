@@ -1,23 +1,29 @@
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import { Colors } from '../../assets/Colors';
 import CustomCardProduct from '../../components/CustomCardProduct/CustomCardProduct';
+import useHome from '../../hooks/useHome';
 
 
 const HomeScreen = () => {
+
+    const { products } = useHome();
+
     return (
-        <View>
-            <Text style={{
-                fontWeight: 'bold',
-                fontSize: 18,
-                color: Colors.textColor,
-                margin: 15
-            }}>Products available</Text>
+        <SafeAreaView style={{ marginBottom: 130 }}>
+            <View>
+                <Text style={{
+                    fontWeight: 'bold',
+                    fontSize: 18,
+                    color: Colors.textColor,
+                    margin: 15
+                }}>Products available</Text>
 
-            <FlatList data={[1, 2, 3, 4, 5, 6]}
-                renderItem={() => <CustomCardProduct />}
-            />
+                <FlatList data={products}
+                    renderItem={({ item }) => <CustomCardProduct product={item} />}
+                />
 
-        </View>
+            </View>
+        </SafeAreaView>
     );
 };
 

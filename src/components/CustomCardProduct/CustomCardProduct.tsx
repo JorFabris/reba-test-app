@@ -5,19 +5,25 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { Colors } from '../../assets/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './CustomCardProductStyles';
-const RATE = 4;
-const CustomCardProduct = () => {
+import { IProducts } from '../../models/IProducts';
+
+
+interface IProps {
+    product: IProducts
+}
+
+const CustomCardProduct = ({ product }: IProps) => {
 
     const renderStars = () => {
         const STARS = []
-        for (let index = 1; index <= RATE; index++) {
+        for (let index = 1; index <= product.rate; index++) {
             STARS.push(
-                <Icon style={{ margin: 4, }} name='star' color={Colors.gold} solid />
+                <Icon key={`star-${index}`} style={{ margin: 4, }} name='star' color={Colors.gold} solid />
             )
         }
-        if ((RATE % 1) !== 0) {
+        if ((product.rate % 1) !== 0) {
             STARS.push(
-                <Icon style={{ margin: 4, }} name='star-half' color={Colors.gold} solid />
+                <Icon key={`star-${new Date().getTime()}`} style={{ margin: 4, }} name='star-half' color={Colors.gold} solid />
             )
         }
 
@@ -26,32 +32,25 @@ const CustomCardProduct = () => {
 
 
     return (
-        <TouchableOpacity activeOpacity={0.87} style={styles.card}>
+        <TouchableOpacity key={product.id} activeOpacity={0.77} style={styles.card}>
             <View style={{ flexDirection: 'row', }}>
 
-                <Image source={{ uri: 'https://iili.io/PUsO2p.jpg' }} style={styles.imgProduct} />
+                <Image source={{ uri: product.img }} style={styles.imgProduct} />
                 <View style={{ flex: 1, }}>
-                    <Text style={styles.productName}>Iphone 13 PRO MAX</Text>
-                    <Text style={styles.price}>U$D 1399.00</Text>
+                    <Text style={styles.productName}>{product.title}</Text>
+                    <Text style={styles.price}>U$D {product.price.toFixed(2)}</Text>
 
                     <Text style={{ fontWeight: '400', color: Colors.textColor, fontSize: 16 }}>Capacity:
-                        <Text style={styles.capacity}>1024 GB</Text></Text>
+                        <Text style={styles.capacity}>{product.capacity} GB</Text></Text>
                     <View style={{ flex: 1 }} />
 
                     <View style={{ flexDirection: 'row', }}>
                         {renderStars()}
-                        <Text style={{ fontWeight: '600', fontSize: 12, color: Colors.textColor, marginTop: 2, }} >{RATE} (343)</Text>
+                        <Text style={{ fontWeight: '600', fontSize: 12, color: Colors.textColor, marginTop: 2, }} >{product.rate} ({product.reviews})</Text>
                     </View>
 
                 </View>
-
-
-
-
-
             </View>
-
-
         </TouchableOpacity>
     )
 }
