@@ -1,4 +1,4 @@
-import {ACT_SELECTED_PRODUCT} from '../actions/ActionTypes';
+import {ACT_SELECTED_PRODUCT} from '../actions/ActionsTypes';
 const initialState = {
   selectedProduct: {},
 };

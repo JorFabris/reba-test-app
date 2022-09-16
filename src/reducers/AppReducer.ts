@@ -1,4 +1,4 @@
-import {ACT_SHOW_LOADING} from '../actions/ActionTypes';
+import {ACT_SHOW_LOADING} from '../actions/ActionsTypes';
 
 const initialState = {
   showLoading: false,
