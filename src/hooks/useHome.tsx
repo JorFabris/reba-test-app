@@ -1,18 +1,22 @@
-import { useEffect, useState } from "react";
-import { DATA } from "../assets/Data";
-import { IProducts } from "../models/IProducts";
-
-
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {DATA} from '../assets/Data';
+import {IProducts} from '../models/IProducts';
 
 const useHome = () => {
-    const [products, setProducts] = useState<IProducts[]>(DATA);
-    useEffect(() => {
+  const [products, setProducts] = useState<IProducts[]>(DATA);
+  const dispatch = useDispatch();
 
-    }, [])
+  const selectProduct = () => {
+    dispatch();
+  };
 
-    return {
-        products
-    }
-}
+  useEffect(() => {}, []);
+
+  return {
+    products,
+    selectProduct,
+  };
+};
 
 export default useHome;

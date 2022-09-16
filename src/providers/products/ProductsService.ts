@@ -11,7 +11,7 @@ export const GetProducts = () => {
       });
       resolve(RESPONSE.data);
     } catch (error) {
-      console.log('ERROR login', error);
+      console.log('ERROR get products', error);
       reject(error);
     }
   });
