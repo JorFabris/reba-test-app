@@ -1,10 +1,11 @@
 export interface IProducts {
     id: number;
     title: string;
-    descripcion: string;
+    description: string;
     img: string;
     price: number;
     capacity: number;
     rate: number;
     reviews: number;
+    favorite?: boolean
 }

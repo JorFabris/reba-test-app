@@ -35,12 +35,7 @@ const styles = StyleSheet.create({
     color: Colors.textColor,
     marginBottom: 10,
   },
-  rates: {
-    fontWeight: '600',
-    fontSize: 12,
-    color: Colors.textColor,
-    marginTop: 2,
-  },
+
 });
 
 export default styles;

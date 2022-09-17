@@ -4,6 +4,7 @@ import {Colors} from '../../assets/Colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './CustomCardProductStyles';
 import {IProducts} from '../../models/IProducts';
+import StarsRate from '../StarsRate/StarsRate';
 
 interface IProps {
   product: IProducts;
@@ -11,33 +12,7 @@ interface IProps {
 }
 
 const CustomCardProduct = ({product, onPress}: IProps) => {
-  const renderStars = () => {
-    const STARS = [];
-    for (let index = 1; index <= product.rate; index++) {
-      STARS.push(
-        <Icon
-          key={`star-${index}`}
-          style={{margin: 4}}
-          name="star"
-          color={Colors.gold}
-          solid
-        />,
-      );
-    }
-    if (product.rate % 1 !== 0) {
-      STARS.push(
-        <Icon
-          key={`star-${new Date().getTime()}`}
-          style={{margin: 4}}
-          name="star-half"
-          color={Colors.gold}
-          solid
-        />,
-      );
-    }
-
-    return STARS;
-  };
+  
 
   return (
     <TouchableOpacity onPress={() => onPress(product)} key={product.id} activeOpacity={0.77} style={styles.card}>
@@ -55,12 +30,11 @@ const CustomCardProduct = ({product, onPress}: IProps) => {
           <View style={{flex: 1}} />
 
           <View style={{flexDirection: 'row'}}>
-            {renderStars()}
-            <Text style={styles.rates}>
-              {product.rate} ({product.reviews})
-            </Text>
+                <StarsRate rate={product.rate} reviews={product.reviews} />
+        
           </View>
         </View>
+        <Icon name='heart' solid size={18} color={Colors.errorColor} />
       </View>
     </TouchableOpacity>
   );
