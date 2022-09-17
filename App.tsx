@@ -6,6 +6,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import CustomStack from './src/navigation/CustomStack';
 import reducers from './src/reducers/index';
+import Toast from 'react-native-toast-message';
 
 const store = createStore(
   reducers,
@@ -18,6 +19,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <CustomStack />
+        <Toast position="top"/>
       </NavigationContainer>
     </Provider>
   );

@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const CustomCardProduct = ({product, onPress}: IProps) => {
-  
+
 
   return (
     <TouchableOpacity onPress={() => onPress(product)} key={product.id} activeOpacity={0.77} style={styles.card}>
@@ -31,10 +31,10 @@ const CustomCardProduct = ({product, onPress}: IProps) => {
 
           <View style={{flexDirection: 'row'}}>
                 <StarsRate rate={product.rate} reviews={product.reviews} />
-        
+
           </View>
         </View>
-        <Icon name='heart' solid size={18} color={Colors.errorColor} />
+        {product.favorite &&  <Icon name="heart" solid size={18} color={Colors.errorColor} />}
       </View>
     </TouchableOpacity>
   );
