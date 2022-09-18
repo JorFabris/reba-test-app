@@ -1,28 +1,25 @@
 /* eslint-disable no-return-assign */
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {actSelectProduct} from '../actions/ProductsActions';
 import {IProducts} from '../models/IProducts';
 import {DETAILS_SCREEN} from '../navigation/Routes';
 import LocalStorage from '../providers/LocalStorage';
 import {GetProducts} from '../providers/products/ProductsService';
-import {actShowLoading} from '../actions/AppActions';
 
 interface IProps {
   navigation: StackNavigationProp<any, any>;
 }
 
 const useHome = ({navigation}: IProps) => {
-  const [products, setProducts] = useState<IProducts[]>();
+  const [products, setProducts] = useState<IProducts[]>([]);
   const dispatch = useDispatch();
   const localStorage = new LocalStorage();
-  const showLoading = useSelector(
-    (store: any) => store.app.selectedProduct,
-  ) as boolean;
+  const [showLoading, setShowLoading] = useState(true);
 
   const selectProduct = (product: IProducts) => {
-    dispatch(actSelectProduct(product));
+    dispatch(actSelectProduct(product.id));
     navigation.push(DETAILS_SCREEN);
   };
 
@@ -34,7 +31,7 @@ const useHome = ({navigation}: IProps) => {
   };
 
   const getLocalProducts = async () => {
-    dispatch(actShowLoading(false));
+    setShowLoading(false);
     const stringFavorites = await localStorage.GET('favorites');
     console.log(stringFavorites);
 
@@ -54,7 +51,7 @@ const useHome = ({navigation}: IProps) => {
   };
 
   useEffect(() => {
-    dispatch(actShowLoading(true));
+    setShowLoading(true);
     getProducts();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

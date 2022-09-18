@@ -1,6 +1,6 @@
 import {ACT_SELECTED_PRODUCT} from '../actions/ActionsTypes';
 const initialState = {
-  selectedProduct: {},
+  idProduct: null,
 };
 
 interface IAction {
@@ -13,7 +13,7 @@ export const productsReducer = (state = initialState, action: IAction) => {
     case ACT_SELECTED_PRODUCT:
       return {
         ...state,
-        selectedProduct: action.payload,
+        idProduct: action.payload,
       };
     default:
       return {...state};
