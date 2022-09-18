@@ -11,7 +11,7 @@ class LocalStorage {
             resolve(data!);
             return;
           }
-          resolve('NO DATA');
+          resolve('NODATA');
         })
         .catch(err => {
           console.log('ERROR GET LOCAL STORAGE', err);
@@ -23,10 +23,10 @@ class LocalStorage {
     return new Promise((resolve, reject) => {
       AsyncStorage.setItem(key, JSON.stringify(value))
         .then(data => {
-            if (data !== null) {
-                resolve(data!);
-                return;
-              }
+          if (data !== null) {
+            resolve(data!);
+            return;
+          }
         })
         .catch(err => {
           console.log('ERROR SET LOCAL STORAGE', err);
@@ -38,7 +38,7 @@ class LocalStorage {
     return new Promise((resolve, reject) => {
       AsyncStorage.removeItem(key)
         .then(() => {
-            resolve('REMOVED');
+          resolve('REMOVED');
         })
         .catch(err => {
           console.log('ERROR REMOVE LOCAL STORAGE', err);

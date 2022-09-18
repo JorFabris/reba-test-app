@@ -1,9 +1,10 @@
+import {IResponseProducts} from '../../models/IResponseApi';
 import {Connector, PRODUCTS} from './ProductsConfig';
 
 const TIMEOUT = 60000;
 
 export const GetProducts = () => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise<IResponseProducts>(async (resolve, reject) => {
     const ENDPOINT = PRODUCTS;
     try {
       const RESPONSE = await Connector.GET(ENDPOINT, {
