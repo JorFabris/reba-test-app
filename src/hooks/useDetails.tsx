@@ -26,7 +26,18 @@ const useDetails = () => {
     setShowLoading(false);
     const response = await GetDetailsProduct(idProduct);
     console.log(response);
-    setSelectedProduct(response.data);
+    formatProduct(response.data);
+  };
+
+  const formatProduct = async (product: IProducts) => {
+    const stringFavorites = await localStorage.GET('favorites');
+    const formatFavorites = JSON.parse(stringFavorites);
+    const findProduct = formatFavorites.find(
+      (fProduct: IProducts) => fProduct.id === product.id,
+    );
+
+    findProduct.favorite = true;
+    setSelectedProduct(findProduct);
   };
 
   useEffect(() => {

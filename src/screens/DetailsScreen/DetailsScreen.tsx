@@ -45,7 +45,7 @@ const DetailsScreen = () => {
           <Image
             source={{uri: selectedProduct!.img}}
             style={{width: '100%', height: '40%'}}
-            resizeMode={'center'}
+            resizeMode={'contain'}
           />
           <View style={styles.containerRate}>
             <StarsRate
