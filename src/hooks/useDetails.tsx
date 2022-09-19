@@ -35,7 +35,7 @@ const useDetails = () => {
     const findProduct = formatFavorites.find(
       (fProduct: IProducts) => fProduct.id === product.id,
     );
-
+      if (!findProduct) {setSelectedProduct(product);}
     findProduct.favorite = true;
     setSelectedProduct(findProduct);
   };
@@ -59,7 +59,7 @@ const useDetails = () => {
       localStorage.SET('favorites', [product]);
     }
     const formatFavorites = JSON.parse(stringFavorites);
-    
+
     const findProduct = formatFavorites.find(
       (fProduct: IProducts) => fProduct.id === product.id,
     );
