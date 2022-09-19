@@ -24,7 +24,6 @@ const useHome = ({navigation}: IProps) => {
 
   const getProducts = async () => {
     const response = await GetProducts();
-    console.log(response);
     parseProducts(response.data);
   };
 
@@ -39,8 +38,6 @@ const useHome = ({navigation}: IProps) => {
       return;
     }
     const formatFavorites = JSON.parse(stringFavorites);
-    console.log('formatFavorites', formatFavorites);
-
 
     productsResponse.map(prod => {
       formatFavorites.map((fProd: IProducts) => {

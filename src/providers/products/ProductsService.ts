@@ -33,7 +33,7 @@ export const GetDetailsProduct = (id: Number) => {
       });
       resolve(RESPONSE.data);
     } catch (error) {
-      console.log('ERROR get products', error);
+      console.log('ERROR get details products', error);
       reject(error);
     }
   });

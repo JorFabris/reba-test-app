@@ -25,7 +25,6 @@ const useDetails = () => {
   const getDetailsProduct = async () => {
     setShowLoading(false);
     const response = await GetDetailsProduct(idProduct);
-    console.log(response);
     formatProduct(response.data);
   };
 
@@ -48,14 +47,11 @@ const useDetails = () => {
 
   const manageFavorites = async (product: IProducts) => {
     const stringFavorites = await localStorage.GET('favorites');
-    console.log(stringFavorites);
 
     if (stringFavorites === 'ERROR') {
-      console.log('ERROR IF');
       return;
     }
     if (stringFavorites === 'NO DATA') {
-      console.log('NO DATA IF');
       localStorage.SET('favorites', [product]);
     }
     const formatFavorites = JSON.parse(stringFavorites);
