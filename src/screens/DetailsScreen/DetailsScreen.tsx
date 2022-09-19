@@ -14,14 +14,14 @@ import useDetails from '../../hooks/useDetails';
 import styles from './DetailsScreenStyles';
 
 const DetailsScreen = () => {
-  const {selectedProduct, saveFavorites, showLoading} = useDetails();
+  const {selectedProduct, manageFavorites, showLoading} = useDetails();
 
   const mainButton = () => {
     return (
       <TouchableOpacity
-        onPress={() => saveFavorites(selectedProduct!)}
+        onPress={() => manageFavorites(selectedProduct!)}
         style={styles.button}>
-        <Text style={styles.textButton}>Add Favorites</Text>
+        <Text style={styles.textButton}>{ selectedProduct!.favorite ? 'Remove Favorites' : 'Add Favorites'}</Text>
         <Icon
           name="heart"
           solid

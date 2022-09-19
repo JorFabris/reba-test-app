@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import {StackNavigationProp} from '@react-navigation/stack';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
@@ -24,16 +23,14 @@ const useHome = ({navigation}: IProps) => {
   };
 
   const getProducts = async () => {
-    const data = await GetProducts();
-    console.log(data);
-    setProducts(data.data);
-    getLocalProducts();
+    const response = await GetProducts();
+    console.log(response);
+    parseProducts(response.data);
   };
 
-  const getLocalProducts = async () => {
+  const parseProducts = async (productsResponse: IProducts[]) => {
     setShowLoading(false);
     const stringFavorites = await localStorage.GET('favorites');
-    console.log(stringFavorites);
 
     if (stringFavorites === 'ERROR') {
       return;
@@ -43,23 +40,33 @@ const useHome = ({navigation}: IProps) => {
     }
     const formatFavorites = JSON.parse(stringFavorites);
     console.log('formatFavorites', formatFavorites);
-    products!.map((prod: IProducts) => {
-      formatFavorites.forEach((fProd: IProducts) =>
-        fProd.id === prod.id ? (prod.favorite = true) : prod,
-      );
+
+
+    productsResponse.map(prod => {
+      formatFavorites.map((fProd: IProducts) => {
+        if (prod.id === fProd.id){
+          prod.favorite = true;
+        }
+      });
     });
+
+    setProducts(productsResponse);
   };
 
-  useEffect(() => {
-    setShowLoading(true);
-    getProducts();
+const fetchData = () => {
+  setShowLoading(true);
+  getProducts();
+};
 
+  useEffect(() => {
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
     products,
     showLoading,
+    fetchData,
     selectProduct,
   };
 };

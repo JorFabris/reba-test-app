@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
     textButton: { fontWeight: 'bold', fontSize: 15, color: Colors.white },
     description: { fontSize: 14, textAlign: 'justify', margin: 15 },
-    containerRate:{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 }
+    containerRate:{ flexDirection: 'row', justifyContent: 'flex-end', margin: 10 },
 });
 
 

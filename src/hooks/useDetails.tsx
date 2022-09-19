@@ -35,7 +35,7 @@ const useDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const saveFavorites = async (product: IProducts) => {
+  const manageFavorites = async (product: IProducts) => {
     const stringFavorites = await localStorage.GET('favorites');
     console.log(stringFavorites);
 
@@ -48,22 +48,23 @@ const useDetails = () => {
       localStorage.SET('favorites', [product]);
     }
     const formatFavorites = JSON.parse(stringFavorites);
-    console.log({formatFavorites});
+    
     const findProduct = formatFavorites.find(
       (fProduct: IProducts) => fProduct.id === product.id,
     );
     if (findProduct) {
-      showToast('This product is already in favorites.', 'error');
+      const newFormatFavorites = formatFavorites.filter((item: IProducts) => item.id !== findProduct.id);
+      await localStorage.SET('favorites', newFormatFavorites);
+      showToast('Product remove from favorites.', 'success');
       return;
     }
     formatFavorites.push(product);
-    const saveLocal = await localStorage.SET('favorites', formatFavorites);
-    console.log({saveLocal});
+    await localStorage.SET('favorites', formatFavorites);
     showToast('Product added to favorites.', 'success');
   };
 
   return {
-    saveFavorites,
+    manageFavorites,
     selectedProduct,
     showLoading,
   };
